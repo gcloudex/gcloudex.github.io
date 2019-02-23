@@ -17,7 +17,7 @@ baseurl: ""
 title: Exploring AI and beyond
 
 # Short description of your site
-description: A virtual proof that name is awesome!
+description: Searching for Good and Ethical AI for the benefits of Humanity
 
 # --- Navigation bar options --- #
 
@@ -64,7 +64,7 @@ footer-link-col: "#404040"
 # Change all these values or delete the ones you don't want.
 # Important: you must keep the "name" parameter, everything else you can remove
 author:
-  name: Gabe
+  name: ExploreAI
 
 # Select your active Social Network Links.
 # Uncomment the links you want to show in the footer and add your information to each link.
@@ -73,8 +73,8 @@ author:
 social-network-links:
   rss: true
   email: "gcloudex@gmail.com"
- # facebook: daattali
-  github: gcloudex
+#  facebook: daattali
+#  github: gcloudex
 #  twitter: daattali
 #  reddit: yourname
 #  google-plus: +DeanAttali
@@ -99,7 +99,7 @@ share-links-active:
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "gcloudex.github.io"  # eg. "deanattali.com/beautiful-jekyll"
+# url-pretty: "gcloudex.github.io"  # eg. "deanattali.com/beautiful-jekyll"
 
 # --- Web Statistics Section --- #
 
