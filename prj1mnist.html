@@ -1,0 +1,42 @@
+---
+layout: page
+title: MNIST
+subtitle: Handwriting recognition based on MNIST data
+---
+
+<div>
+In Progress...  
+</div>
+{%- if site.navbar-links.Projects[0].MNIST -%}
+<div id="digit-canvas">
+  <!-- Canvas to write digit -->
+  <table>
+    <tr>
+        <td style="border-style: none; width: 160px; padding: 10px;">
+            <div style="border: solid 2px #666; width: 142px; height: 142px;">
+                <canvas id="digitpad" width="140" height="140"></canvas>
+            </div>
+        </td>
+        <td style="border-style: none; padding: 10px;">
+            <!--
+            <button onclick="inference()">Predict digit</button>
+            <p>&nbsp;</p>
+            -->
+            <a id="imageDownload" download="digit.png">
+              <button type="button" onClick="download()">Download PNG</button>
+            </a>
+            <p>&nbsp;</p>
+            <button onclick="clear_value()">Clear canvas</button>
+        </td>
+    </tr>
+    <!--
+    <tr>
+        <td id="digitlabel"></td>
+        <td></td>
+        <td id="digitvalue"></td>
+    </tr>
+  -->
+  </table>
+  <script async src="/js/canvas.js"></script>
+</div>
+{%- endif -%}

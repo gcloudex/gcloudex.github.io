@@ -1,0 +1,13 @@
+---
+layout: page
+title: Random Authors
+subtitle: Using fetch() to get random authors
+---
+
+{%- if site.navbar-links.Projects[1].HttpRequest -%}
+<div id="authors">
+  <ul id="authorlist" class="author-list">
+  </ul>
+</div>
+<script async src="/js/prj2rest.js"></script>
+{%- endif -%}
