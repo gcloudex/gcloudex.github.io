@@ -22,23 +22,82 @@ canvas.addEventListener("mousemove", function(e){
           }
       }
   } else {
-      if (click == 1) set_value();
+      //if (click == 1) set_value();
       click = 0;
+      //console.log("not write...");
   }
 });
 
+// Set up touch events for mobile, etc
+// Source: https://gist.github.com/bencentra/91350fe91c377c1ca574
+/**
+canvas.addEventListener("touchstart", function (e) {
+  mousePos = getTouchPos(canvas, e);
+  var touch = e.touches[0];
+  var mouseEvent = new MouseEvent("mousedown", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}, false);
+canvas.addEventListener("touchend", function (e) {
+  var mouseEvent = new MouseEvent("mouseup", {});
+  canvas.dispatchEvent(mouseEvent);
+}, false);
+*/
+canvas.addEventListener("touchmove", function (e) {
+  var touch = e.touches[0];
+  var mouseEvent = new MouseEvent("mousemove", {
+    //clientX: touch.clientX,
+    //clientY: touch.clientY
+    offsetX: touch.clientX,
+    offsetY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}, false);
+
+// Prevent scrolling when touching the canvas
+document.body.addEventListener("touchstart", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, false);
+document.body.addEventListener("touchend", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, false);
+document.body.addEventListener("touchmove", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, false);
+
+
 function clear_value(){
-  console.log("clearing canvas...");
+  //console.log("clearing canvas...");
   canvas.getContext("2d").fillStyle = "rgb(255,255,255)";
   canvas.getContext("2d").fillRect(0, 0, 140, 140);
+  //canvas.getContext("2d").strokeStyle = "#222222";
+	//canvas.getContext("2d").lineWith = 2;
   for (var i = 0; i < 28*28; i++) pixels[i] = 0;
 }
 
-function set_value(){
-  var result = ""
-  for (var i = 0; i < 28*28; i++) result += pixels[i] + ","
-  //alert(result);
+// Get the position of a touch relative to the canvas
+function getTouchPos(canvasDom, touchEvent) {
+  var rect = canvasDom.getBoundingClientRect();
+  return {
+    x: touchEvent.touches[0].clientX - rect.left,
+    y: touchEvent.touches[0].clientY - rect.top
+  };
 }
+
+// TODO this function is not needed!!!
+//function set_value(){
+//  var result = ""
+//  for (var i = 0; i < 28*28; i++) result += pixels[i] + ","
+  //alert(result);
+//}
 
 function download(){
   var download = document.getElementById("imageDownload");
