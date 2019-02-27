@@ -55,6 +55,7 @@ window.requestAnimFrame = (function (callback) {
 // Set up touch events for mobile, etc
 canvas.addEventListener("touchstart", function (e) {
   mousePos = getTouchPos(canvas, e);
+  console.log("mouse-pos: ", mousePos.x, mousePos.y);
   //var touch = e.touches[0];
   //var mouseEvent = new MouseEvent("mousedown", {
   //  clientX: touch.clientX,
@@ -63,6 +64,7 @@ canvas.addEventListener("touchstart", function (e) {
   //canvas.dispatchEvent(mouseEvent);
   drawing = true;
 	lastPos = getTouchPos(canvas, e);
+  console.log("last-pos: ", lastPos.x, lastPos.y);
 }, false);
 canvas.addEventListener("touchend", function (e) {
   //var mouseEvent = new MouseEvent("mouseup", {});
@@ -72,6 +74,7 @@ canvas.addEventListener("touchend", function (e) {
 canvas.addEventListener("touchmove", function (e) {
   //var touch = e.touches[0];
   mousePos = getTouchPos(canvas, e);
+  console.log("mouse-pos: ", lastPos.x, lastPos.y);
   /**
   var rect = canvas.getBoundingClientRect();
   touchX = touch.clientX - rect.left,
@@ -148,7 +151,7 @@ function getTouchPos(canvasDom, touchEvent) {
   var rect = canvasDom.getBoundingClientRect();
   x = touchEvent.touches[0].clientX - rect.left,
   y = touchEvent.touches[0].clientY - rect.top
-  console.log("touch-pos: ", x, y);
+  //console.log("touch-pos: ", x, y);
   return {
       x: x,
       y: y
@@ -185,6 +188,7 @@ function renderCanvas() {
 
 // Allow for animation
 (function drawLoop () {
+  console.log("drawing loop...");
   requestAnimFrame(drawLoop);
   renderCanvas();
 })();
