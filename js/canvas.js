@@ -62,7 +62,7 @@ canvas.addEventListener("touchstart", function (e) {
   //});
   //canvas.dispatchEvent(mouseEvent);
   drawing = true;
-	lastPos = getMousePos(canvas, e);
+	lastPos = getTouchPos(canvas, e);
 }, false);
 canvas.addEventListener("touchend", function (e) {
   //var mouseEvent = new MouseEvent("mouseup", {});
@@ -70,8 +70,8 @@ canvas.addEventListener("touchend", function (e) {
   drawing = false;
 }, false);
 canvas.addEventListener("touchmove", function (e) {
-  var touch = e.touches[0];
-  mousePos = getMousePos(canvas, e);
+  //var touch = e.touches[0];
+  mousePos = getTouchPos(canvas, e);
   /**
   var rect = canvas.getBoundingClientRect();
   touchX = touch.clientX - rect.left,
@@ -130,6 +130,7 @@ function clear_value(){
 }
 
 // Get the position of the mouse relative to the canvas
+/**
 function getMousePos(canvasDom, mouseEvent) {
   var rect = canvasDom.getBoundingClientRect();
   x = mouseEvent.clientX - rect.left,
@@ -140,7 +141,7 @@ function getMousePos(canvasDom, mouseEvent) {
     y: y
   };
 }
-
+*/
 
 // Get the position of a touch relative to the canvas
 function getTouchPos(canvasDom, touchEvent) {
