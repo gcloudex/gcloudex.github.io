@@ -126,7 +126,7 @@ function clear_value(){
   canvas.getContext("2d").fillStyle = "rgb(255,255,255)";
   canvas.getContext("2d").fillRect(0, 0, 140, 140);
   canvas.getContext("2d").strokeStyle = "#222222";
-	canvas.getContext("2d").lineWith = 2;
+	canvas.getContext("2d").lineWith = 8;
   canvas.width = canvas.width;
 
   for (var i = 0; i < 28*28; i++) pixels[i] = 0;
