@@ -14,6 +14,7 @@ canvas.addEventListener("mousemove", function(e){
       //console.log(e.offsetY, e.offsetX);
       x = Math.floor(e.offsetY * 0.2);
       y = Math.floor(e.offsetX * 0.2) + 1;
+      console.log("(x,y) = ", x, y);
       for (var dy = 0; dy < 2; dy++){
           for (var dx = 0; dx < 2; dx++){
               if ((x + dx < 28) && (y + dy < 28)){
@@ -48,14 +49,28 @@ canvas.addEventListener("touchend", function (e) {
 */
 canvas.addEventListener("touchmove", function (e) {
   var touch = e.touches[0];
+  var rect = canvas.getBoundingClientRect();
+  touchX = touch.clientX - rect.left,
+  touchY = touch.clientY - rect.top
+  console.log("touch: ", touchX, touchY);
   var mouseEvent = new MouseEvent("mousemove", {
-    //clientX: touch.clientX,
-    //clientY: touch.clientY
-    offsetX: touch.clientX,
-    offsetY: touch.clientY
+    offsetX: touchX,
+    offsetY: touchY
   });
   //canvas.dispatchEvent(mouseEvent);
-  console.log("touch: ", touch.clientX, touch.clientY);
+  scaledOffsetX = Math.floor(e.offsetX * 0.2);
+  scaledOffsetY = Math.floor(e.offsetY * 0.2);
+  x = Math.floor(e.offsetY * 0.2);
+  y = Math.floor(e.offsetX * 0.2) + 1;
+  console.log("(x,y) = ", x, y);
+  for (var dy = 0; dy < 2; dy++){
+      for (var dx = 0; dx < 2; dx++){
+          if ((x + dx < 28) && (y + dy < 28)){
+              pixels[(y+dy)+(x+dx)*28] = 1;
+              //console.log(y,dy,x,dx,(y+dy)+(x+dx)*28);
+          }
+      }
+  }
 }, false);
 
 // Prevent scrolling when touching the canvas
@@ -78,7 +93,9 @@ document.body.addEventListener("touchmove", function (e) {
 */
 
 function clear_value(){
-  //console.log("clearing canvas...");
+  console.log("clearing canvas...");
+  var rect = canvas.getBoundingClientRect();
+  console.log("canvas rect (left, top, right, botoom): ", rect.left, rect.top, rect.right, rect.bottom);
   canvas.getContext("2d").fillStyle = "rgb(255,255,255)";
   canvas.getContext("2d").fillRect(0, 0, 140, 140);
   //canvas.getContext("2d").strokeStyle = "#222222";
