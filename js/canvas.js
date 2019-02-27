@@ -6,6 +6,7 @@ var canvas = document.getElementById("digitpad");
 canvas.addEventListener("mousemove", function(e){
   if (e.buttons == 1) {
       click = 1;
+      console.log(e.offsetX, e.offsetY);
       canvas.getContext("2d").fillStyle = "rgb(0,0,0)";
       canvas.getContext("2d").fillRect(e.offsetX, e.offsetY, 8, 8);
       scaledOffsetX = Math.floor(e.offsetX * 0.2);
@@ -54,7 +55,7 @@ canvas.addEventListener("touchmove", function (e) {
     offsetY: touch.clientY
   });
   //canvas.dispatchEvent(mouseEvent);
-  console.log("touchmove...");
+  console.log("touch: ", e.offsetX, e.offsetY);
 }, false);
 
 // Prevent scrolling when touching the canvas
