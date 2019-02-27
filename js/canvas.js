@@ -2,6 +2,18 @@ var pixels = [];
 for (var i = 0; i < 28*28; i++) pixels[i] = 0;
 var click = 0;
 
+// Get a regular interval for drawing to the screen
+window.requestAnimFrame = (function (callback) {
+  return window.requestAnimationFrame || 
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimaitonFrame ||
+        function (callback) {
+           window.setTimeout(callback, 1000/60);
+        };
+})();
+
 var canvas = document.getElementById("digitpad");
 canvas.addEventListener("mousemove", function(e){
   if (e.buttons == 1) {
@@ -49,8 +61,9 @@ canvas.addEventListener("touchend", function (e) {
 */
 canvas.addEventListener("touchmove", function (e) {
   var touch = e.touches[0];
-  canvas.getContext("2d").fillStyle = "rgb(0,0,0)";
-  canvas.getContext("2d").fillRect(touch.clientX, touch.clientY, 8, 8);
+  
+  //canvas.getContext("2d").fillStyle = "rgb(0,0,0)";
+  //canvas.getContext("2d").fillRect(touch.clientX, touch.clientY, 8, 8);
 
   var rect = canvas.getBoundingClientRect();
   touchX = touch.clientX - rect.left,
@@ -63,8 +76,8 @@ canvas.addEventListener("touchmove", function (e) {
   //canvas.dispatchEvent(mouseEvent);
   //scaledOffsetX = Math.floor(touchX * 0.2);
   //scaledOffsetY = Math.floor(touchY * 0.2);
-  x = Math.floor(touchX * 0.2);
-  y = Math.floor(touchY * 0.2) + 1;
+  x = Math.floor(touchX * 0.24);
+  y = Math.floor(touchY * 0.24) + 1;
   console.log("(x,y) = ", x, y);
   for (var dy = 0; dy < 2; dy++){
       for (var dx = 0; dx < 2; dx++){
@@ -101,8 +114,10 @@ function clear_value(){
   console.log("canvas rect (left, top, right, botoom): ", rect.left, rect.top, rect.right, rect.bottom);
   canvas.getContext("2d").fillStyle = "rgb(255,255,255)";
   canvas.getContext("2d").fillRect(0, 0, 140, 140);
-  //canvas.getContext("2d").strokeStyle = "#222222";
-	//canvas.getContext("2d").lineWith = 2;
+  canvas.getContext("2d").strokeStyle = "#222222";
+	canvas.getContext("2d").lineWith = 2;
+  canvas.width = canvas.width;
+  
   for (var i = 0; i < 28*28; i++) pixels[i] = 0;
 }
 
@@ -131,5 +146,10 @@ function download(){
   download.setAttribute("href", image);
 }
 
+// Allow for animation
+(function drawLoop () {
+  requestAnimFrame(drawLoop);
+  renderCanvas();
+})();
 
 document.getElementById("digitpad").onload = clear_value();
