@@ -55,7 +55,7 @@ canvas.addEventListener("touchmove", function (e) {
     offsetY: touch.clientY
   });
   //canvas.dispatchEvent(mouseEvent);
-  console.log("touch: ", offsetX, offsetY);
+  console.log("touch: ", touch.clientX, touch.clientY);
 }, false);
 
 // Prevent scrolling when touching the canvas
