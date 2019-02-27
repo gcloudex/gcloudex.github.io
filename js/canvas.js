@@ -188,7 +188,6 @@ function renderCanvas() {
 
 // Allow for animation
 (function drawLoop () {
-  console.log("drawing loop...");
   requestAnimFrame(drawLoop);
   renderCanvas();
 })();
