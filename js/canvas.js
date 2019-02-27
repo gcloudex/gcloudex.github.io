@@ -57,6 +57,7 @@ canvas.addEventListener("touchmove", function (e) {
 }, false);
 
 // Prevent scrolling when touching the canvas
+/**
 document.body.addEventListener("touchstart", function (e) {
   if (e.target == canvas) {
     e.preventDefault();
@@ -72,7 +73,7 @@ document.body.addEventListener("touchmove", function (e) {
     e.preventDefault();
   }
 }, false);
-
+*/
 
 function clear_value(){
   //console.log("clearing canvas...");
