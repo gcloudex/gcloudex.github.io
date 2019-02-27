@@ -9,8 +9,8 @@ canvas.addEventListener("mousemove", function(e){
       console.log(e.offsetX, e.offsetY);
       canvas.getContext("2d").fillStyle = "rgb(0,0,0)";
       canvas.getContext("2d").fillRect(e.offsetX, e.offsetY, 8, 8);
-      scaledOffsetX = Math.floor(e.offsetX * 0.2);
-      scaledOffsetY = Math.floor(e.offsetY * 0.2);
+      //scaledOffsetX = Math.floor(e.offsetX * 0.2);
+      //scaledOffsetY = Math.floor(e.offsetY * 0.2);
       //console.log(e.offsetY, e.offsetX);
       x = Math.floor(e.offsetY * 0.2);
       y = Math.floor(e.offsetX * 0.2) + 1;
@@ -58,10 +58,10 @@ canvas.addEventListener("touchmove", function (e) {
     offsetY: touchY
   });
   //canvas.dispatchEvent(mouseEvent);
-  scaledOffsetX = Math.floor(e.offsetX * 0.2);
-  scaledOffsetY = Math.floor(e.offsetY * 0.2);
-  x = Math.floor(e.offsetY * 0.2);
-  y = Math.floor(e.offsetX * 0.2) + 1;
+  scaledOffsetX = Math.floor(touchX * 0.2);
+  scaledOffsetY = Math.floor(touchY * 0.2);
+  x = Math.floor(touchX * 0.2);
+  y = Math.floor(touchY * 0.2) + 1;
   console.log("(x,y) = ", x, y);
   for (var dy = 0; dy < 2; dy++){
       for (var dx = 0; dx < 2; dx++){
