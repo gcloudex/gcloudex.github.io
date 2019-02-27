@@ -132,9 +132,12 @@ function clear_value(){
 // Get the position of the mouse relative to the canvas
 function getMousePos(canvasDom, mouseEvent) {
   var rect = canvasDom.getBoundingClientRect();
+  x = mouseEvent.clientX - rect.left,
+  y = mouseEvent.clientY - rect.top
+  console.log("mouse-pos: ", x, y);
   return {
-    x: mouseEvent.clientX - rect.left,
-    y: mouseEvent.clientY - rect.top
+    x: x,
+    y: y
   };
 }
 
@@ -142,10 +145,13 @@ function getMousePos(canvasDom, mouseEvent) {
 // Get the position of a touch relative to the canvas
 function getTouchPos(canvasDom, touchEvent) {
   var rect = canvasDom.getBoundingClientRect();
+  x = touchEvent.touches[0].clientX - rect.left,
+  y = touchEvent.touches[0].clientY - rect.top
+  console.log("touch-pos: ", x, y);
   return {
-    x: touchEvent.touches[0].clientX - rect.left,
-    y: touchEvent.touches[0].clientY - rect.top
-  };
+      x: x,
+      y: y
+    };
 }
 
 // TODO this function is not needed!!!
@@ -167,6 +173,7 @@ function download(){
 // Draw to the canvas
 function renderCanvas() {
   if (drawing) {
+    console.log("render: ", lastPos.x, lastPos.y, mousePos.x, mousePos.y);
     canvas.getContext("2d").moveTo(lastPos.x, lastPos.y);
     canvas.getContext("2d").lineTo(mousePos.x, mousePos.y);
     canvas.getContext("2d").stroke();
