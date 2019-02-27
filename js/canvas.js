@@ -49,6 +49,9 @@ canvas.addEventListener("touchend", function (e) {
 */
 canvas.addEventListener("touchmove", function (e) {
   var touch = e.touches[0];
+  canvas.getContext("2d").fillStyle = "rgb(0,0,0)";
+  canvas.getContext("2d").fillRect(touch.clientX, touch.clientY, 8, 8);
+
   var rect = canvas.getBoundingClientRect();
   touchX = touch.clientX - rect.left,
   touchY = touch.clientY - rect.top
@@ -58,8 +61,8 @@ canvas.addEventListener("touchmove", function (e) {
     offsetY: touchY
   });
   //canvas.dispatchEvent(mouseEvent);
-  scaledOffsetX = Math.floor(touchX * 0.2);
-  scaledOffsetY = Math.floor(touchY * 0.2);
+  //scaledOffsetX = Math.floor(touchX * 0.2);
+  //scaledOffsetY = Math.floor(touchY * 0.2);
   x = Math.floor(touchX * 0.2);
   y = Math.floor(touchY * 0.2) + 1;
   console.log("(x,y) = ", x, y);
