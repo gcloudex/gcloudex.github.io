@@ -51,7 +51,8 @@ var discoveryDocs = ["https://people.googleapis.com/$discovery/rest?version=v1"]
 //   https://console.developers.google.com/apis/credentials?project=_
 // In your API Console project, add a JavaScript origin that corresponds
 //   to the domain where you will be running the script.
-var clientId = 'temporal-parser-233105.apps.googleusercontent.com';
+//var clientId = 'temporal-parser-233105.apps.googleusercontent.com';
+var clientId = 'temporal-parser-233105';
 // Enter one or more authorization scopes. Refer to the documentation for
 // the API or https://developers.google.com/people/v1/how-tos/authorizing
 // for details.
