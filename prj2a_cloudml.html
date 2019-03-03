@@ -1,0 +1,44 @@
+---
+layout: page
+title: GCP CloudML Predict 
+subtitle: Predict Income categories (>=50k or <50k)
+---
+{%- if site.navbar-links.Projects[2].CloudML -%}
+<div id="income_prediction">
+
+    <p>Say hello using the People API.</p>
+
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize-button" style="display: none;">Authorize</button>
+    <button id="signout-button" style="display: none;">Sign Out</button>
+
+    <div id="content"></div>
+<!--
+  <p>Predicted income is : >50k</p>
+
+  <table>
+    <tr><td>age</td><td>25</td></tr>
+    <tr><td>workclass</td><td>Private</td></tr>
+    <tr><td>education</td><td>11th</td></tr>
+    <tr><td>education_num</td><td>7</td></tr>
+    <tr><td>Marital_status</td><td>Never-married</td></tr>
+    <tr><td>occupation</td><td>Machine-op-inspct</td></tr>
+    <tr><td>relationship</td><td>Own-child</td></tr>
+    <tr><td>race</td><td>Black</td></tr>
+    <tr><td>gender</td><td>Male</td></tr>
+    <tr><td>capital_gain</td><td>0</td></tr>
+    <tr><td>capital_loss</td><td>0</td></tr>
+    <tr><td>hours_per_week</td><td>40</td></tr>
+    <tr><td>native_country</td><td>United-States</td></tr>
+  </table>
+-->
+
+
+</div>
+<!--<script src="https://apis.google.com/js/api.js"></script>-->
+<script src="/js/prj2acloudml.js"></script>
+<script async defer src="https://apis.google.com/js/api.js" 
+onload="this.onload=function(){};handleClientLoad()" 
+onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+{%- endif -%}

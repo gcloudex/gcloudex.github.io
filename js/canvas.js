@@ -1,4 +1,5 @@
 // Source for touch: https://gist.github.com/bencentra/91350fe91c377c1ca574
+// https://zipso.net/a-simple-touchscreen-sketchpad-using-javascript-and-html5/
 
 var pixels = [];
 for (var i = 0; i < 28*28; i++) pixels[i] = 0;
@@ -126,8 +127,9 @@ function clear_value(){
   canvas.getContext("2d").fillStyle = "rgb(255,255,255)";
   canvas.getContext("2d").fillRect(0, 0, 140, 140);
   canvas.getContext("2d").strokeStyle = "#222222";
-	canvas.getContext("2d").lineWith = 25;
+  canvas.getContext("2d").lineWith = 25;
   canvas.width = canvas.width;
+  canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
 
   for (var i = 0; i < 28*28; i++) pixels[i] = 0;
 }
