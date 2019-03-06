@@ -26,7 +26,7 @@ var discoveryDocs = ["https://people.googleapis.com/$discovery/rest?version=v1",
   "https://ml.googleapis.com/$discovery/rest?version=v1"];
 
 //var ml_predict_name = 'projects/temporal-parser-233105/models/census';
-var ml_predict_name = 'projects/eploreai/models/census';
+var ml_predict_name = 'projects/exploreai/models/census';
 
 var welcome = document.getElementById('welcome');
 var prediction = document.getElementById("prediction");
