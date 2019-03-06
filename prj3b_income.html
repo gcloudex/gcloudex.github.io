@@ -1,0 +1,88 @@
+---
+layout: page
+title: ML Online Income Prediction
+subtitle: Model deployed with REST API endpoint on GCP ML Engine 
+---
+<div id="content">
+  <p>
+    This application demonstrates:
+  </p>
+  <ul>
+    <li>
+      Sending Online Prediction (or Inference) request to the REST API endpoint
+      of a trained model hosted on GCP ML Engine; see model details below;
+      Note; the income prediction is based on two scenarios only:
+      income >50k; or income <= 50k. 
+    </li>
+    <li>
+      Using  
+      <a href="https://developers.google.com/api-client-library/javascript/samples/samples#authorizing-and-making-authorized-requests">
+        Google API Javascript Client Libraries
+      </a> to make the request from the browser.
+    </li>
+    <li>
+      OAuth 2.0 authorization is needed to access the REST API, using Google Id.
+      <b>Click Signin for Authorization</b> before making prediction.  
+    </li>
+    <li>
+      Changing the "capital_loss" parameter can greatly effect the predicted
+      income; therefore we make this parameter adjustable for demo purpose.
+      All other parameters are predefined and locked down as shown below,
+      to simplify the scope. 
+    </li>
+  </ul>
+
+  <p>
+  The trained Machine Learning model is for predicting Income based on the
+  demographic input data, as used in the 
+  <a href="https://archive.ics.uci.edu/ml/datasets/Census+Income">1994 Census database</a>.
+  An example of the input data is shown below. The model was trained and deployed on
+  the GCP ML Engine, as described in the 
+  <a href="https://cloud.google.com/ml-engine/docs/tensorflow/getting-started-training-prediction">
+    Google Cloud - Getting Started tutorial
+  </a>.
+  No effort has been spent in tuning the model; leaving it for future exercise.
+  </p>
+
+
+  <h2 id="preauthorized_msg" style="display: none;">Click Signin for Authorization</h2>
+  <div id="welcome">
+    <h2 id="welcome_msg"></h2>
+  </div>
+  <!--Add buttons to initiate auth sequence and sign out-->
+  <button id="authorize-button" style="display: none; margin: 10px;">Sigin</button>
+  <button id="signout-button" style="display: none; margin: 10px;">Sign Out</button>
+
+  <table style="margin: 10px;">
+      <th><td>Demographic</td><td>&nbsp;</td></th>
+      <tr><td>age</td><td>25</td></tr>
+      <tr><td>workclass</td><td>Private</td></tr>
+      <tr><td>education</td><td>11th</td></tr>
+      <tr><td>education_num</td><td>7</td></tr>
+      <tr><td>Marital_status</td><td>Never-married</td></tr>
+      <tr><td>occupation</td><td>Machine-op-inspct</td></tr>
+      <tr><td>relationship</td><td>Own-child</td></tr>
+      <tr><td>race</td><td>Black</td></tr>
+      <tr><td>gender</td><td>Male</td></tr>
+      <tr><td>capital_gain</td><td>0</td></tr>
+      <!--<tr><td>capital_loss</td><td>0</td></tr>-->
+      <tr><td>hours_per_week</td><td>40</td></tr>
+      <tr><td>native_country</td><td>United-States</td></tr>
+  </table>
+  <div>
+    <b>capital_loss</b> (type: positive integer): 
+    <input type="number" id="caploss" value="0">
+  </div>
+  
+  
+  <button id="predict-button" style="display: none; margin: 10px;">Predict Income</button>
+  <div id="prediction">
+    <p id="prediction_msg"></p>
+  </div>
+</div>
+<!--<script src="https://apis.google.com/js/api.js"></script>-->
+<script src="/js/prj3b_income.js"></script>
+<script async defer src="https://apis.google.com/js/api.js" 
+    onload="this.onload=function(){};handleClientLoad()" 
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>

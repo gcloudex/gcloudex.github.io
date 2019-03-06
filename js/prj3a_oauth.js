@@ -1,48 +1,18 @@
-// Reference: https://developers.google.com/api-client-library/javascript/start/start-js
-
-var instance = {
-  age: 25,
-  workclass: " Private",
-  education: " 11th",
-  education_num: 7,
-  marital_status: " Never - married",
-  occupation: " Machine - op - inspct",
-  relationship: " Own - child",
-  race: " Black",
-  gender: " Male",
-  capital_gain: 0,
-  capital_loss: 0,
-  hours_per_week: 40,
-  native_country: " United - Stats"
-}
-
 /**
-function start() {
-  // 2. Initialize the JavaScript client library.
-  gapi.client.init({
-    'apiKey': 'AIzaSyD3vxfTuieyjbxlwkQzCdHc_y6x-sMJ3v8',
-    // clientId and scope are optional if auth is not required.
-    'clientId': 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com',
-    'scope': 'profile',
-  }).then(function() {
-    // 3. Initialize and make the API request.
-    return gapi.client.request({
-      'path': 'https://people.googleapis.com/v1/people/me?requestMask.includeField=person.names',
-    })
-  }).then(function(response) {
-    console.log(response.result);
-  }, function(reason) {
-    console.log('Error: ' + reason.result.error.message);
-  });
-};
-// 1. Load the JavaScript client library.
-gapi.load('client', start);
+ * Reference: 
+ * - https://developers.google.com/api-client-library/javascript/start/start-js 
+ * - tbd
+ *  
 */
-
 
 // Enter an API key from the Google API Console:
 //   https://console.developers.google.com/apis/credentials
-var apiKey = 'AIzaSyD3vxfTuieyjbxlwkQzCdHc_y6x-sMJ3v8';
+// Note: when you authorize your application using Oauth 2.0, 
+// you do not also need to set the API key as in the first example. 
+// However, it is a good practice to do so, in case your code ever expands
+// to handle unauthorized requests.
+//var apiKey = 'AIzaSyD3vxfTuieyjbxlwkQzCdHc_y6x';  //incomplete
+
 // Enter the API Discovery Docs that describes the APIs you want to
 // access. In this example, we are accessing the People API, so we load
 // Discovery Doc found here: https://developers.google.com/people/api/rest/
@@ -51,8 +21,7 @@ var discoveryDocs = ["https://people.googleapis.com/$discovery/rest?version=v1"]
 //   https://console.developers.google.com/apis/credentials?project=_
 // In your API Console project, add a JavaScript origin that corresponds
 //   to the domain where you will be running the script.
-//var clientId = 'temporal-parser-233105.apps.googleusercontent.com';
-var clientId = 'temporal-parser-233105';
+var clientId = '267601624832-ifs0sjnqbq9qqokp7m9n35i8fa6smabp.apps.googleusercontent.com';
 // Enter one or more authorization scopes. Refer to the documentation for
 // the API or https://developers.google.com/people/v1/how-tos/authorizing
 // for details.
@@ -67,7 +36,8 @@ function handleClientLoad() {
 
 function initClient() {
   gapi.client.init({
-      apiKey: apiKey,
+      // Don't need API key in this particular case because of OAuth 2.0
+      //apiKey: apiKey,
       discoveryDocs: discoveryDocs,
       clientId: clientId,
       scope: scopes
@@ -89,6 +59,7 @@ function updateSigninStatus(isSignedIn) {
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
+    clearMessage();
   }
 }
 
@@ -104,11 +75,24 @@ function handleSignoutClick(event) {
 function makeApiCall() {
   gapi.client.people.people.get({
     'resourceName': 'people/me',
-    'requestMask.includeField': 'person.names'
+    //'requestMask.includeField': 'person.names'   // depracated
+    'personFields': 'names'
   }).then(function(resp) {
-    var p = document.createElement('p');
     var name = resp.result.names[0].givenName;
-    p.appendChild(document.createTextNode('Hello, '+name+'!'));
-    document.getElementById('content').appendChild(p);
+    var welcome_text = document.createTextNode('Hello, '+name+'');
+    var h1 = document.createElement('h1');
+    h1.appendChild(welcome_text);
+    var content = document.getElementById('welcome');
+    //content.replaceChild(welcome_text, content.childNodes[0]);
+    content.replaceChild(h1, content.childNodes[0]);
   });
+}
+
+function clearMessage() {
+  var content = document.getElementById('welcome');
+  var empty_text = document.createTextNode("");
+  var h1 = document.createElement('h1');
+  h1.appendChild(empty_text);
+  //content.replaceChild(empty_text, content.childNodes[0]);
+  content.replaceChild(h1, content.childNodes[0]);
 }

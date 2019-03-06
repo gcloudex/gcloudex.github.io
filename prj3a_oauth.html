@@ -1,0 +1,37 @@
+---
+layout: page
+title: GCP APIs
+subtitle: Access Person API using browser-based JS libraries
+---
+<div id="content">
+
+  <p>
+    Demonstrating:
+    <ul>
+      <li>
+        Using <a href="https://developers.google.com/api-client-library/javascript/start/start-js" target="_blank">Google API Client Javascript Libraries</a>
+        to access Google Cloud APIs; for other languages, 
+        see <a href="https://cloud.google.com/apis/docs/cloud-client-libraries" target="_blank">Google API Client Libraries</a>.
+      </li>
+      <li>
+        Accessing Google Cloud People API by first authorize using OAuth2; [code];
+      </li>
+    </ul>
+  </p>
+  <p>
+      Click Authorize button to permit access to your name via Google Cloud Person API. 
+  </p>
+  
+  <!--Add buttons to initiate auth sequence and sign out-->
+  <button id="authorize-button" style="display: none;">Authorize</button>
+  <button id="signout-button" style="display: none;">Sign Out</button>
+  <div id="welcome">
+    <h1 id="welcome_msg"></h1>
+  </div>
+</div>
+
+<script src="/js/prj3a_oauth.js"></script>
+<script async defer src="https://apis.google.com/js/api.js" 
+  onload="this.onload=function(){};handleClientLoad()" 
+  onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
