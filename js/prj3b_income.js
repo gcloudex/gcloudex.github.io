@@ -1,13 +1,21 @@
 // Reference: https://developers.google.com/api-client-library/javascript/start/start-js
 
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// Change before deployment
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // Enter a client ID for a web application from the Google API Console:
 //   https://console.developers.google.com/apis/credentials?project=_
 // In your API Console project, add a JavaScript origin that corresponds
 //   to the domain where you will be running the script.
   //  development client ID
-//var clientId = '267601624832???';
+//var clientId = '267601624832';
   // production
 var clientId = '1030010108515-nuqmpkp1sf356pt0gdb4nhhdu2h4o4nr.apps.googleusercontent.com';
+
+//var ml_predict_name = 'projects/temporal-parser-233105/models/census';
+var ml_predict_name = 'projects/exploreai/models/census';
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 // Enter one or more authorization scopes. Refer to the documentation for
 // the API or ??
@@ -24,9 +32,6 @@ var scopes = 'profile https://www.googleapis.com/auth/cloud-platform';
 //      https://developers.google.com/api-client-library/javascript/start/start-js 
 var discoveryDocs = ["https://people.googleapis.com/$discovery/rest?version=v1",
   "https://ml.googleapis.com/$discovery/rest?version=v1"];
-
-//var ml_predict_name = 'projects/temporal-parser-233105/models/census';
-var ml_predict_name = 'projects/exploreai/models/census';
 
 var welcome = document.getElementById('welcome');
 var prediction = document.getElementById("prediction");
@@ -138,8 +143,8 @@ function renderWelcomeMsg (err, status, resp){
   } else if (status=="authorized") {
     var name = null;
     if (resp) {
-      //console.log(JSON.stringify(resp));
-      name = resp.result.names[0].givenName;
+      console.log(JSON.stringify(resp));
+      name = resp.result.names[0].displayName;
     }
     if (name) {
       msg = "Hello, " + name;
