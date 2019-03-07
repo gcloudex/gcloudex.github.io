@@ -5,12 +5,16 @@ subtitle: Handwriting recognition based on MNIST data
 ---
 
 {%- if site.navbar-links.Projects[0].MNIST -%}
+
+<iframe style="border: none;" src="/canvas.html" width="400" height="600" scrolling="no"></iframe>
+
+
+<!--
 <div id="digitpad-container">
-  <!-- Canvas to write digit -->
   <table>
     <tr>
         <td style="width: 392px; padding: 40px;">
-            <div style="width: 252px; height: 252px; padding: 20px 20px 20px 50px;">   <!-- touch-action: none;-->
+            <div style="width: 252px; height: 252px; padding: 20px 20px 20px 50px;">
                 <canvas id="digitpad" width="210" height="210"></canvas>
             </div>
         </td>
@@ -24,16 +28,9 @@ subtitle: Handwriting recognition based on MNIST data
             </a>            
         </td>
     </tr>
-    <!--
-    <tr>
-        <td id="digitlabel"></td>
-        <td></td>
-        <td id="digitvalue"></td>
-    </tr>
-  -->
   </table>
-  <!--<script async src="/js/canvas.js"></script>-->
   <script async src="/js/canvas_mousetouch.js"></script>
 </div>
+-->
 
 {%- endif -%}

@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>MNIST Canvas</title>
+    <script async src="/js/canvas_mousetouch.js"></script>
+    <style>
+        /*
+        Ref: https://zipso.net/a-simple-touchscreen-sketchpad-using-javascript-and-html5/
+        */
+        .canvas {
+            width:300px;
+            height:300px;
+            padding:10px 10px 0px 10px;
+        }
+        .buttons {
+            padding: 0px 5px 5px 20px;
+        }
+        .digit {
+            font-size: 20px;
+            line-height: 1.1;
+            display: block;
+            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 300;
+            margin: 10px 0 10px 15px;
+        }
+        #digitpad-container{
+            /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;  
+        }
+        #digitpad {
+            border: solid 2px #888;
+            border-radius:4px;
+            position:relative; /* Necessary for correct mouse co-ords in Firefox */  
+        }
+        .button {
+            font-size: 14px;
+            padding: 5px;
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="digitpad-container">
+        <div class="canvas">
+            <canvas id="digitpad" height="280" width="280"></canvas>
+        </div>
+        <div class="buttons">
+            <!--<input type="submit" value="Clear Sketchpad" id="clearbutton" onclick="clearCanvas();">-->
+            <button class="button" onclick="clearCanvas()">To-Digit</button> &nbsp;
+            <button class="button" onclick="clearCanvas()">Clear</button> &nbsp;
+            <a id="imageDownload" download="digit.png">
+                <button type="button" class="button" onClick="download()">Download</button>
+            </a>
+        </div>
+        <div class="digit">
+            You wrote: 
+        </div>
+    </div>  
+</body>
+</html>
+</div>

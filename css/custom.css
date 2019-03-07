@@ -6,21 +6,3 @@ ul.author-list li {
   margin: 15px;
 }
 
-/*
-digitpad - prj1mnist.html
-Ref: https://zipso.net/a-simple-touchscreen-sketchpad-using-javascript-and-html5/
-*/
-#digitpad-container{
-    /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;  
-}
-#digitpad {
-  border: solid 2px #888;
-  border-radius:4px;
-  position:relative; /* Necessary for correct mouse co-ords in Firefox */  
-}

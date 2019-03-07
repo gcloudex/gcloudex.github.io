@@ -10,7 +10,7 @@ var mouseX, mouseY = 0;
 var touchX, touchY;
 
 // Pixel size
-var pixelSize = 12;
+var pixelSize = 14;
 
 // holding pixel [28x28]
 var pixels = [];
@@ -20,8 +20,8 @@ function clearPixel() {
 }
 
 function fillPixel(currentX, currentY) {
-    x = Math.floor(currentY * 0.135);     //0.2
-    y = Math.floor(currentX * 0.135) + 1;    // populate pixel array;
+    x = Math.floor(currentY * 0.1);     //0.2
+    y = Math.floor(currentX * 0.1) + 1;    // populate pixel array;
     // this will be used for MNIST inference
     console.log("Pixel (x,y) = ", x, y);
     for (var dy = 0; dy < 2; dy++){
