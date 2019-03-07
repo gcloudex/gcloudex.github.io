@@ -17,6 +17,7 @@
 // access. In this example, we are accessing the People API, so we load
 // Discovery Doc found here: https://developers.google.com/people/api/rest/
 var discoveryDocs = ["https://people.googleapis.com/$discovery/rest?version=v1"];
+
 // Enter a client ID for a web application from the Google API Console:
 //   https://console.developers.google.com/apis/credentials?project=_
 // In your API Console project, add a JavaScript origin that corresponds
@@ -25,7 +26,6 @@ var discoveryDocs = ["https://people.googleapis.com/$discovery/rest?version=v1"]
 //var clientId = '267601624832-';
   // production
 var clientId = '1030010108515-nuqmpkp1sf356pt0gdb4nhhdu2h4o4nr.apps.googleusercontent.com';
-
 
 // Enter one or more authorization scopes. Refer to the documentation for
 // the API or https://developers.google.com/people/v1/how-tos/authorizing
