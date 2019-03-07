@@ -18,13 +18,13 @@ canvas.addEventListener("mousemove", function(e){
   if (e.buttons == 1) {
       click = 1;
       console.log(e.offsetX, e.offsetY);
-      canvas.getContext("2d").fillStyle = "rgb(0,0,0)";
-      canvas.getContext("2d").fillRect(e.offsetX, e.offsetY, 8, 8);
+      canvas.getContext("2d").fillStyle = "rgb(0,0,0,1)";
+      canvas.getContext("2d").fillRect(e.offsetX, e.offsetY, 12, 12);
       //scaledOffsetX = Math.floor(e.offsetX * 0.2);
       //scaledOffsetY = Math.floor(e.offsetY * 0.2);
       //console.log(e.offsetY, e.offsetX);
-      x = Math.floor(e.offsetY * 0.2);
-      y = Math.floor(e.offsetX * 0.2) + 1;
+      x = Math.floor(e.offsetY * 0.135);     //0.2
+      y = Math.floor(e.offsetX * 0.135) + 1;
       console.log("(x,y) = ", x, y);
       for (var dy = 0; dy < 2; dy++){
           for (var dx = 0; dx < 2; dx++){
@@ -125,7 +125,7 @@ function clear_value(){
   var rect = canvas.getBoundingClientRect();
   console.log("canvas rect (left, top, right, botoom): ", rect.left, rect.top, rect.right, rect.bottom);
   canvas.getContext("2d").fillStyle = "rgb(255,255,255)";
-  canvas.getContext("2d").fillRect(0, 0, 140, 140);
+  canvas.getContext("2d").fillRect(0, 0, 210, 210);
   canvas.getContext("2d").strokeStyle = "#222222";
   canvas.getContext("2d").lineWith = 25;
   canvas.width = canvas.width;
