@@ -20,25 +20,7 @@ Ref: https://zipso.net/a-simple-touchscreen-sketchpad-using-javascript-and-html5
     user-select: none;  
 }
 #digitpad {
-  position:relative; /* Necessary for correct mouse co-ords in Firefox */  
-}
-
-
-
-#sketchpadapp {
-  /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-#sketchpad {
-  float:left;
-  height:300px;
-  width:400px;
-  border:2px solid #888;
+  border: solid 2px #888;
   border-radius:4px;
-  position:relative; /* Necessary for correct mouse co-ords in Firefox */
+  position:relative; /* Necessary for correct mouse co-ords in Firefox */  
 }
