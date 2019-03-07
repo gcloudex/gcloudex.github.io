@@ -104,7 +104,7 @@ function ontouchMove(e) {
   // During a touchmove event, unlike a mousemove event,
   // don't need to check if the touch is engaged, since there will always
   // be contact with the screen by definition.
-  drawDot(ctx, touchX, touchY, pixelSize); 
+  touchDrawDot(ctx, touchX, touchY, pixelSize); 
 
   // Prevent a scrolling action as a result of this touchmove triggering.
   // there is a bug; won't work; but not needed
@@ -153,10 +153,20 @@ function getTouchPos(e) {
 function drawDot(ctx, currentX, currentY, pixelSize) {
   console.log("draw dot: ", currentX, currentY)
   // draw square dots on canvas
-  ctx.fillStyle = "rgb(0, 0, 0, 1)";
+  ctx.fillStyle = "rgba(0, 0, 0, 1)";
   //var pixelSize = 12;
   ctx.fillRect(currentX, currentY, pixelSize, pixelSize);
 }
+
+function touchDrawDot(ctx, currentX, currentY, pixelSize) {
+  console.log("draw dot: ", currentX, currentY)
+  // draw square dots on canvas
+  ctx.fillStyle = "rgba(0, 0, 0, 1)";
+  // Draw a filled circle
+  ctx.beginPath();
+  ctx.arc(currentX, currentY, pixelSize, 0, Math.PI*2, true); 
+  ctx.closePath();
+  ctx.fill();}
 
 
 function download(){
