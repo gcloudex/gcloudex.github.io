@@ -8,7 +8,7 @@ tags: [UN, AI, sustainability, public health]
 ---
 
 
-Source: [Wikipedia](https://en.wikipedia.org/wiki/AI_for_Good)
+Source: [Wikipedia](https://en.wikipedia.org/wiki/AI_for_Good){:target="_blank"}
 
 The second AI for Good Global Summit concluded.
 It took place last week from 15 to 17 May 2018 at the ITU headquarters in Geneva, Switzerland.

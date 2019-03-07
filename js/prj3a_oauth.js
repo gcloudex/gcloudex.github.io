@@ -11,7 +11,7 @@
 // you do not also need to set the API key as in the first example. 
 // However, it is a good practice to do so, in case your code ever expands
 // to handle unauthorized requests.
-//var apiKey = 'AIzaSyD3vxfTuieyjbxlwkQzCdHc_y6x';  //incomplete
+//var apiKey = 'AIzaSyD';  //incomplete
 
 // Enter the API Discovery Docs that describes the APIs you want to
 // access. In this example, we are accessing the People API, so we load
@@ -21,7 +21,12 @@ var discoveryDocs = ["https://people.googleapis.com/$discovery/rest?version=v1"]
 //   https://console.developers.google.com/apis/credentials?project=_
 // In your API Console project, add a JavaScript origin that corresponds
 //   to the domain where you will be running the script.
-var clientId = '267601624832-ifs0sjnqbq9qqokp7m9n35i8fa6smabp.apps.googleusercontent.com';
+  //  development client ID
+//var clientId = '267601624832-';
+  // production
+var clientId = '1030010108515-nuqmpkp1sf356pt0gdb4nhhdu2h4o4nr.apps.googleusercontent.com';
+
+
 // Enter one or more authorization scopes. Refer to the documentation for
 // the API or https://developers.google.com/people/v1/how-tos/authorizing
 // for details.

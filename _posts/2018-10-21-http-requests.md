@@ -28,7 +28,7 @@ should be implemented using the *serverless* architecture for cost
 optimizations among other benefits.
 
 ![Http Requests](/img/http-requests.png)
-[*Source*](https://www.testingexcellence.com/page/5/)  
+[*Source*](https://www.testingexcellence.com/page/5/){:target="_blank"}  
 **Note:** the left-hand side, *i.e.*, Computer (Client) refers to any client
 application as discussed above including: desktop, mobile, IoT, etc;
 the right hand-side, *i.e.,* Computer (Server) refers to APIs whether they are
@@ -36,7 +36,7 @@ running in-house, or from external services accessed via endpoints.
 
 The method to access the API is called *Http Request* because it is based on 
 the Http protocol as defined in RFC 2616. For more information, go to 
-[W3C - RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616.html).
+[W3C - RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616.html){:target="_blank"}.
 
 In this article, we summarize our experiences using different 
 **Javascript client libraries to access APIs**, including (if applicable): 
@@ -81,20 +81,20 @@ interested to use XHR.
 The XHR coding structure requires handling of many callbacks that can become
 tedious and overwhelming, hence the term *callback hell*. This issue is
 addressed by newer frameworks using 
-[*Promise*](https://developers.google.com/web/fundamentals/primers/promises).
+[*Promise*](https://developers.google.com/web/fundamentals/primers/promises){:target="_blank"}.
 <code>fect()</code>, the framework we evaluated [below](#fetch), uses Promise.
 
 **References:**
-- [w3schools XMLHttpRequest](https://www.w3schools.com/xml/xml_http.asp)
-- [MDN XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+- [w3schools XMLHttpRequest](https://www.w3schools.com/xml/xml_http.asp){:target="_blank"}
+- [MDN XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest){:target="_blank"}
 
 
 ### <a name="fetch"></a>Fetch framework
 <code>fetch()</code> is similar to [XHR](#xhr) but uses 
-[Promise](https://developers.google.com/web/fundamentals/primers/promises) 
+[Promise](https://developers.google.com/web/fundamentals/primers/promises){:target="_blank"} 
 such that the client codes become simpler and cleaner in comparison to XHR.
 Please refer to the 
-[Introduction to fetch()](https://developers.google.com/web/updates/2015/03/introduction-to-fetch)
+[Introduction to fetch()](https://developers.google.com/web/updates/2015/03/introduction-to-fetch){:target="_blank"}
 for details on <code>fetch()</code>.
 
 A skeleton implementation of Http Request using <code>fetch()</code> looks
@@ -124,19 +124,19 @@ A [demo](/prj2rest), showing Http Request using <code>fetch()</code>
 calling an API from Random User Generator. [code tbd]()
 
 References:
-- [Introduction to fetch()](https://developers.google.com/web/updates/2015/03/introduction-to-fetch)
-- [MDN Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) 
+- [Introduction to fetch()](https://developers.google.com/web/updates/2015/03/introduction-to-fetch){:target="_blank"}
+- [MDN Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API){:target="_blank"} 
 
 
 ### <a name="gcp"></a>Google API Client Libraries 
 Google provides client libraries for calling their cloud APIs.
-The Javascript client libraries can be found [here](https://developers.google.com/api-client-library/javascript/start/start-js).
+The Javascript client libraries can be found [here](https://developers.google.com/api-client-library/javascript/start/start-js){:target="_blank"}.
 
 A demo (tbd) showing a call to Google API using the JS client libraries. 
 
 References:
-- [Google Cloud Client Libraries](https://cloud.google.com/apis/docs/cloud-client-libraries)
+- [Google Cloud Client Libraries](https://cloud.google.com/apis/docs/cloud-client-libraries){:target="_blank"}
 
 
 ### <a name="apis"></a>REST APIs
-- [Random User Generator](https://randomuser.me/)
+- [Random User Generator](https://randomuser.me/){:target="_blank"}
