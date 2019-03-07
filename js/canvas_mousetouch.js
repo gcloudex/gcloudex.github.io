@@ -151,6 +151,7 @@ function getTouchPos(e) {
 }
 
 function drawDot(ctx, currentX, currentY, pixelSize) {
+  console.log("draw dot: ", currentX, currentY)
   // draw square dots on canvas
   ctx.fillStyle = "rgb(0, 0, 0, 1)";
   //var pixelSize = 12;
