@@ -68,7 +68,7 @@ function initCanvas(){
   clearPixel();
 }
 
-function clear_value(){
+function clearCanvas(){
   //console.log("clearing canvas...");
   initCanvas();
 }
@@ -179,90 +179,3 @@ function download(){
   download.setAttribute("href", image);
 }
 
-
-
-
-
-
-
-
-
-document.getElementById("sketchpadapp").onload = init();
-var canvas2, ctx2; 
-
-// touch position X & Y
-var touchX2, touchY2;
-
-// Set-up the canvas and add our event handlers after the page has loaded
-function init() {
-      // Get the specific canvas element from the HTML document
-      canvas2 = document.getElementById('sketchpad');
-
-      // If the browser supports the canvas tag, get the 2d drawing context for this canvas
-      if (canvas2.getContext)
-          ctx2 = canvas2.getContext('2d');
-
-      // Check that we have a valid context to draw on/with before adding event handlers
-      if (ctx2) {
-          // React to mouse events on the canvas, and mouseup on the entire document
-          //canvas2.addEventListener('mousedown', sketchpad_mouseDown, false);
-          //canvas2.addEventListener('mousemove', sketchpad_mouseMove, false);
-          //window.addEventListener('mouseup', sketchpad_mouseUp, false);
-
-          // React to touch events on the canvas
-          canvas2.addEventListener('touchstart', sketchpad_touchStart, false);
-          canvas2.addEventListener('touchmove', sketchpad_touchMove, false);
-      }
-}
-
-// Draw something when a touch start is detected
-function sketchpad_touchStart() {
-    // Update the touch co-ordinates
-    getTouchPos2();
-
-    drawDot2(ctx2,touchX2,touchY2,12);
-
-    // Prevents an additional mousedown event being triggered
-    event.preventDefault();
-}
-
-// Draw something and prevent the default scrolling when touch movement is detected
-function sketchpad_touchMove(e) { 
-    // Update the touch co-ordinates
-    getTouchPos2(e);
-
-    // During a touchmove event, unlike a mousemove event, we don't need to check if the touch is engaged, since there will always be contact with the screen by definition.
-    drawDot2(ctx2,touchX2,touchY2,12); 
-
-    // Prevent a scrolling action as a result of this touchmove triggering.
-    event.preventDefault();
-}
-
-function getTouchPos2(e) {
-  if (!e)
-      var e = event;
-
-  if(e.touches) {
-      if (e.touches.length == 1) { // Only deal with one finger
-          var touch = e.touches[0]; // Get the information for finger #1
-          touchX2=touch.pageX-touch.target.offsetLeft;
-          touchY2=touch.pageY-touch.target.offsetTop;
-      }
-  }
-}
-
-// Draws a dot at a specific position on the supplied canvas name
-// Parameters are: A canvas context, the x position, the y position, the size of the dot
-function drawDot2(ctx,x,y,size) {
-  // Let's use black by setting RGB values to 0, and 255 alpha (completely opaque)
-  r=0; g=0; b=0; a=255;
-
-  // Select a fill style
-  ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
-
-  // Draw a filled circle
-  ctx.beginPath();
-  ctx.arc(x, y, size, 0, Math.PI*2, true); 
-  ctx.closePath();
-  ctx.fill();
-} 

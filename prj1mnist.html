@@ -17,7 +17,7 @@ subtitle: Handwriting recognition based on MNIST data
     </tr>
     <tr>
         <td>
-            <button onclick="clear_value()">Clear canvas</button> &nbsp;
+            <button onclick="clearCanvas()">Clear canvas</button> &nbsp;
 
             <a id="imageDownload" download="digit.png">
                 <button type="button" onClick="download()">Download PNG</button>
@@ -34,13 +34,6 @@ subtitle: Handwriting recognition based on MNIST data
   </table>
   <!--<script async src="/js/canvas.js"></script>-->
   <script async src="/js/canvas_mousetouch.js"></script>
-</div>
-
-<div id="sketchpadapp">
-    <div class="rightside">
-        <canvas id="sketchpad" height="300" width="400">
-        </canvas>
-    </div>
 </div>
 
 {%- endif -%}

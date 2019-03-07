@@ -1,9 +1,9 @@
 <html>
 <head>
 <title>Sketchpad</title>
-
 <script type="text/javascript">
-    // Variables for referencing the canvas and 2dcanvas context
+/**
+  // Variables for referencing the canvas and 2dcanvas context
     var canvas,ctx;
 
     // Variables to keep track of the mouse position and left-button status 
@@ -14,6 +14,7 @@
 
     // Draws a dot at a specific position on the supplied canvas name
     // Parameters are: A canvas context, the x position, the y position, the size of the dot
+
     function drawDot(ctx,x,y,size) {
         // Let's use black by setting RGB values to 0, and 255 alpha (completely opaque)
         r=0; g=0; b=0; a=255;
@@ -109,12 +110,11 @@
             }
         }
     }
-
-
+    
     // Set-up the canvas and add our event handlers after the page has loaded
     function init() {
         // Get the specific canvas element from the HTML document
-        canvas = document.getElementById('sketchpad');
+        canvas = document.getElementById('digitpad');
 
         // If the browser supports the canvas tag, get the 2d drawing context for this canvas
         if (canvas.getContext)
@@ -123,20 +123,23 @@
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
             // React to mouse events on the canvas, and mouseup on the entire document
-            canvas.addEventListener('mousedown', sketchpad_mouseDown, false);
-            canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
-            window.addEventListener('mouseup', sketchpad_mouseUp, false);
+            canvas.addEventListener('mousedown', onmouseDown, false);
+            canvas.addEventListener('mousemove', onmouseMove, false);
+            window.addEventListener('mouseup', onmouseUp, false);
 
             // React to touch events on the canvas
-            canvas.addEventListener('touchstart', sketchpad_touchStart, false);
-            canvas.addEventListener('touchmove', sketchpad_touchMove, false);
+            canvas.addEventListener('touchstart', ontouchStart, false);
+            canvas.addEventListener('touchmove', ontouchMove, false);
         }
     }
+*/
 </script>
+<script async src="/js/canvas_mousetouch.js"></script>
+
 
 <style>
 /* Some CSS styling */
-#sketchpadapp {
+#digitpad-container {
     /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -157,7 +160,7 @@
     float:left;
     margin-left:10px;
 }
-#sketchpad {
+#digitpad {
     float:left;
     height:300px;
     width:400px;
@@ -175,16 +178,16 @@
 </style>
 </head>
 
-<body onload="init()">
-    <div id="sketchpadapp">
+<body>
+    <div id="digitpad-container">
         <div class="leftside">
              Touchscreen and mouse support HTML5 canvas sketchpad.<br/><br/>
              Draw something by tapping or dragging.<br/><br/>
              Works on iOS, Android and desktop/laptop touchscreens using Chrome/Firefox/Safari.<br/><br/>
-             <input type="submit" value="Clear Sketchpad" id="clearbutton" onclick="clearCanvas(canvas,ctx);">
+             <input type="submit" value="Clear Sketchpad" id="clearbutton" onclick="clearCanvas();">
         </div>
         <div class="rightside">
-            <canvas id="sketchpad" height="300" width="400">
+            <canvas id="digitpad" height="300" width="400">
             </canvas>
         </div>
     </div>
