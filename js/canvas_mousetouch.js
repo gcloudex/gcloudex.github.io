@@ -36,7 +36,7 @@ function fillPixel(currentX, currentY) {
 
 // canvas
 canvas = document.getElementById("digitpad");
-document.getElementById("digitpad").onload = initCanvas();
+//document.getElementById("digitpad").onload = initCanvas();
 
 function initCanvas(){
   console.log("init canvas...");
@@ -97,6 +97,8 @@ function ontouchStart(e) {
   getTouchPos(e);
   //touchDrawDot(ctx, touchX, touchY, pixelSize);
   drawDot(ctx, touchX, touchY, pixelSize);
+  // Prevents an additional mousedown event being triggered
+  event.preventDefault();  
 }
 
 function ontouchMove(e) {
@@ -110,7 +112,7 @@ function ontouchMove(e) {
 
   // Prevent a scrolling action as a result of this touchmove triggering.
   // there is a bug; won't work; but not needed
-  //event.preventDefault();
+  event.preventDefault();
 }
 
 function ontouchEnd() {
