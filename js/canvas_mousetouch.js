@@ -95,7 +95,8 @@ function onmouseUp() {
 
 function ontouchStart(e) {
   getTouchPos(e);
-  touchDrawDot(ctx, touchX, touchY, pixelSize);
+  //touchDrawDot(ctx, touchX, touchY, pixelSize);
+  drawDot(ctx, touchX, touchY, pixelSize);
 }
 
 function ontouchMove(e) {
@@ -104,7 +105,8 @@ function ontouchMove(e) {
   // During a touchmove event, unlike a mousemove event,
   // don't need to check if the touch is engaged, since there will always
   // be contact with the screen by definition.
-  touchDrawDot(ctx, touchX, touchY, pixelSize); 
+  //touchDrawDot(ctx, touchX, touchY, pixelSize); 
+  drawDot(ctx, touchX, touchY, pixelSize);
 
   // Prevent a scrolling action as a result of this touchmove triggering.
   // there is a bug; won't work; but not needed
