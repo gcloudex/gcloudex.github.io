@@ -95,7 +95,7 @@ function onmouseUp() {
 
 function ontouchStart(e) {
   getTouchPos(e);
-  drawDot(ctx, touchX, touchY, pixelSize);
+  touchDrawDot(ctx, touchX, touchY, pixelSize);
 }
 
 function ontouchMove(e) {
@@ -159,14 +159,15 @@ function drawDot(ctx, currentX, currentY, pixelSize) {
 }
 
 function touchDrawDot(ctx, currentX, currentY, pixelSize) {
-  console.log("draw dot: ", currentX, currentY)
+  console.log("touch draw dot: ", currentX, currentY)
   // draw square dots on canvas
   ctx.fillStyle = "rgba(0, 0, 0, 1)";
   // Draw a filled circle
   ctx.beginPath();
   ctx.arc(currentX, currentY, pixelSize, 0, Math.PI*2, true); 
   ctx.closePath();
-  ctx.fill();}
+  ctx.fill();
+}
 
 
 function download(){
