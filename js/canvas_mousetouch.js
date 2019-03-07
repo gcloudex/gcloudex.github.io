@@ -48,7 +48,7 @@ function initCanvas(){
   if (ctx) {
     //var rect = canvas.getBoundingClientRect();
     //console.log("canvas rect (left, top, right, botoom): ", rect.left, rect.top, rect.right, rect.bottom);
-    ctx.fillStyle = "rgb(255,255,255,1)";
+    ctx.fillStyle = "rgba(255,255,255,1)";
     ctx.fillRect(0, 0, 210, 210);
     //ctx.strokeStyle = "#222222";
     //ctx.lineWith = 25;
