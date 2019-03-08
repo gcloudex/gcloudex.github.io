@@ -39,7 +39,7 @@ canvas = document.getElementById("digitpad");
 //document.getElementById("digitpad").onload = initCanvas();
 
 function initCanvas(){
-  console.log("init canvas...");
+  console.log("initCanvas()...");
 
   // If the browser supports the canvas tag, get the 2d drawing context for this canvas
   if (canvas.getContext)

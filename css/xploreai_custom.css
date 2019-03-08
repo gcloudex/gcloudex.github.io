@@ -1,0 +1,36 @@
+/*
+styles for Project 2 - HttpRequest - prj2rest.html
+*/
+ul.author-list li {
+  background: #cce5ff;
+  margin: 15px;
+}
+
+/*
+Security message: authentication, authorization message; used in many pages
+*/
+.security_msg {
+  font-size: 25px;
+  line-height: 1.0;
+  display: block;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  margin: 20px 0 5px 3px;  
+}
+.security_button {
+  font-size: 14px;
+  padding: 5px;
+  margin: 3px;
+}
+
+/*
+prediction msg
+*/
+.prediction_msg {
+  font-size: 20px;
+  line-height: 1.1;
+  display: block;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  margin: 10px 0 10px 15px;
+}

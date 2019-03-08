@@ -1,7 +1,13 @@
 <html>
 <head>
     <title>MNIST Canvas</title>
+    <script src="/js/prj1mnist.js"></script>
     <script async src="/js/canvas_mousetouch.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" 
+        onload="this.onload=function(){};handleClientLoad()" 
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+    <link rel="stylesheet" href="/css/xploreai_custom.css">
     <style>
         /*
         Ref: https://zipso.net/a-simple-touchscreen-sketchpad-using-javascript-and-html5/
@@ -13,14 +19,6 @@
         }
         .buttons {
             padding: 0px 5px 5px 20px;
-        }
-        .digit {
-            font-size: 20px;
-            line-height: 1.1;
-            display: block;
-            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-weight: 300;
-            margin: 10px 0 10px 15px;
         }
         #digitpad-container{
             /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
@@ -43,22 +41,30 @@
         }
     </style>
 </head>
-<body onload="initCanvas()">
+<body onload="init()">
     <div id="digitpad-container">
+        <h2 id="preauthorized_msg" class="security_msg" style="display: none;">Please Signin</h2>
+        <div id="welcome">
+        <h2 id="welcome_msg" class="security_msg"></h2>
+        </div>
+        <!--Add buttons to initiate auth sequence and sign out-->
+        <button id="authorize-button" class="security_button" style="display: none;">Login</button>
+        <button id="signout-button" class="security_button" style="display: none;">Logout</button>
+
         <div class="canvas">
             <canvas id="digitpad" height="280" width="280"></canvas>
         </div>
         <div class="buttons">
             <!--<input type="submit" value="Clear Sketchpad" id="clearbutton" onclick="clearCanvas();">-->
-            <button class="button" onclick="clearCanvas()">To-Digit</button> &nbsp;
-            <button class="button" onclick="clearCanvas()">Clear</button> &nbsp;
+            <button id="predict-button" class="button" onclick="clearCanvas()">To-Digit</button>
+            <button class="button" onclick="clearCanvas()">Clear</button>
             <a id="imageDownload" download="digit.png">
                 <button type="button" class="button" onClick="download()">Download</button>
             </a>
         </div>
-        <div class="digit">
-            You wrote: 
-        </div>
+        <div id="prediction">
+            <p id="prediction_msg" class="prediction_msg"></p>
+        </div>            
     </div>  
 </body>
 </html>
