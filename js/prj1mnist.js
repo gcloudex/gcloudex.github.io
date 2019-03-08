@@ -6,7 +6,7 @@
 // In your API Console project, add a JavaScript origin that corresponds
 //   to the domain where you will be running the script.
   //  development client ID
-//var clientId = '267601624832-';
+//var clientId = '267601624832';
   // production
 var clientId = '1030010108515-nuqmpkp1sf356pt0gdb4nhhdu2h4o4nr.apps.googleusercontent.com';
 
@@ -42,6 +42,7 @@ function init() {
   signoutButton = document.getElementById("signout-button");
   predictButton = document.getElementById("predict-button");
   prediction_msg = document.getElementById("prediction_msg");
+  initCanvas();
 }
 
 function handleClientLoad() {
