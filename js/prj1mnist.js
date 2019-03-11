@@ -6,12 +6,12 @@
 // In your API Console project, add a JavaScript origin that corresponds
 //   to the domain where you will be running the script.
   //  development client ID
-//var clientId = '267601624832';
+var clientId = '267601624832-ifs0sjnqbq9qqokp7m9n35i8fa6smabp.apps.googleusercontent.com';
   // production
-var clientId = '1030010108515-nuqmpkp1sf356pt0gdb4nhhdu2h4o4nr.apps.googleusercontent.com';
+//var clientId = '1030010108515-nuqmpkp1sf356pt0gdb4nhhdu2h4o4nr.apps.googleusercontent.com';
 
-//var ml_predict_name = 'projects/temporal-parser-233105/models/mnist';
-var ml_predict_name = 'projects/exploreai/models/mnist';
+var ml_predict_name = 'projects/temporal-parser-233105/models/mnist';
+//var ml_predict_name = 'projects/exploreai/models/mnist';
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -33,6 +33,8 @@ var discoveryDocs = ["https://people.googleapis.com/$discovery/rest?version=v1",
 // UI variables
 var preauthorized_msg, authorizeButton, welcome_msg, signoutButton;
 var predictButton, prediction_msg;
+
+var current_digit;
 
 function init() {
   //console.log("init()...");
@@ -60,28 +62,24 @@ function handleSignoutClick(event) {
 
 function handlePredictClick(event) {
   //##### Use to explore the API by printing to console the object structure
-  console.log(gapi.client);
+  //console.log(gapi.client);
 
-  var ml_predict_name = "mnist";
-  var digit_array = [];
-  var instance = "";
+  //console.log("digit: ", pixels);
+  var req_payload = convertPixelToJSON();
 
   // Ref: 
   // - https://cloud.google.com/ml-engine/reference/rest/
   // - https://cloud.google.com/ml-engine/reference/rest/v1/projects/predict
-//  gapi.client.ml.projects.predict({
-//    'name': ml_predict_name,
-//    'resource': instance
-//  }).then(function(resp) {
-//      /**if (err) {
-//        renderPrediction(err, null)
-//        return;
-//      }*/
-//      renderMsg(prediction_msg, null, constructPredictionMsg(resp));
-//    });
-
-  var dummy_resp = {};
-  renderMsg(prediction_msg, null, constructPredictionMsg(dummy_resp));
+  gapi.client.ml.projects.predict({
+    'name': ml_predict_name,
+    'resource': req_payload
+  }).then(function(resp) {
+      /**if (err) {
+        renderPrediction(err, null)
+        return;
+      }*/
+      renderMsg(prediction_msg, null, constructPredictionMsg(resp));
+    });
 }
 
 function initClient() {
@@ -174,10 +172,45 @@ function constructPredictionMsg(resp) {
   msg = "";
   if (resp) {
     //console.log(JSON.stringify(resp));
-    //var digit = resp.result.names[0].givenName;
-    var digit = "tbd";
-    var probability = 100;
-    msg =  "Your wrote: "+digit+" (probability: "+probability+"%)";
+    // hack here because the key name is funky; "dense_8/Softmax:0"
+    // redeploy model with TF layer name;
+    var predictions = resp.result.predictions;
+    var p0 = predictions[0];
+    var key = Object.keys(p0)[0];
+    var probabilities = p0[key];
+    //console.log(probabilities);
+    var max_prob = Math.max(...probabilities);   //JS Spread syntax
+    var idx = "?";
+    if (max_prob > 0.6) {
+      idx = String(probabilities.indexOf(max_prob));
+      current_digit = probabilities.indexOf(max_prob);
+
+      // append to the number input
+      number_input = document.getElementById("number");
+      number_value = number_input.value;
+      number_value_str = String(number_value) + idx;
+      number_input.value = number_value_str;
+    }
+    //console.log("idx, prob = ", idx, max_prob);
+    msg =  "Your wrote: "+idx+" (probab.: "+(max_prob.toFixed(2)*100)+"%)";
   }
   return msg;
+}
+
+function convertPixelToJSON() {
+  var str_digit = "[";
+  for (var y = 0; y < 28; y++){
+    row = "[";
+    for (var x = 0; x < 28; x++){
+      row = row + "[" + pixels[(y*28)+x].toFixed(1) + "]";
+      if (x<27) row = row + ", ";
+    }
+    row = row + "]";
+    str_digit = str_digit + row;
+    if (y<27) str_digit = str_digit + ", ";
+  }
+  str_digit = str_digit + "]";
+  var req_json = '{"instances": [{"input_image": ' + str_digit + '}]}'; 
+  //console.log("request = ", req_json);
+  return req_json;
 }
