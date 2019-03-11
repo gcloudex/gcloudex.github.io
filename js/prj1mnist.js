@@ -6,12 +6,12 @@
 // In your API Console project, add a JavaScript origin that corresponds
 //   to the domain where you will be running the script.
   //  development client ID
-var clientId = '267601624832-ifs0sjnqbq9qqokp7m9n35i8fa6smabp.apps.googleusercontent.com';
+//var clientId = '267601624832';
   // production
-//var clientId = '1030010108515-nuqmpkp1sf356pt0gdb4nhhdu2h4o4nr.apps.googleusercontent.com';
+var clientId = '1030010108515-nuqmpkp1sf356pt0gdb4nhhdu2h4o4nr.apps.googleusercontent.com';
 
-var ml_predict_name = 'projects/temporal-parser-233105/models/mnist';
-//var ml_predict_name = 'projects/exploreai/models/mnist';
+//var ml_predict_name = 'projects/temporal-parser-233105/models/mnist';
+var ml_predict_name = 'projects/exploreai/models/mnist';
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
