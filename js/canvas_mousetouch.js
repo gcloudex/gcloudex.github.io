@@ -23,7 +23,7 @@ function fillPixel(currentX, currentY, scale) {
     x = Math.floor(currentY * scale);     //0.2
     y = Math.floor(currentX * scale) + 1;    // populate pixel array;
     // this will be used for MNIST inference
-    console.log("Pixel (x,y) = ", x, y);
+    //console.log("Pixel (x,y) = ", x, y);
     for (var dy = 0; dy < 2; dy++){
       for (var dx = 0; dx < 2; dx++){
           if ((x + dx < 28) && (y + dy < 28)){
@@ -109,7 +109,7 @@ function ontouchMove(e) {
   // be contact with the screen by definition.
   drawDot(ctx, touchX, touchY, pixelSize);
   // populate pixel array;
-  var scale = 0.089;
+  var scale = 0.09;
   fillPixel(touchX, touchY, scale);
 
   // Prevent a scrolling action as a result of this touchmove triggering.
