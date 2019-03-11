@@ -109,7 +109,7 @@ function ontouchMove(e) {
   // be contact with the screen by definition.
   drawDot(ctx, touchX, touchY, pixelSize);
   // populate pixel array;
-  var scale = 0.118;
+  var scale = 0.089;
   fillPixel(touchX, touchY, scale);
 
   // Prevent a scrolling action as a result of this touchmove triggering.
