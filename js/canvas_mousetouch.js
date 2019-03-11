@@ -107,6 +107,8 @@ function ontouchMove(e) {
   // don't need to check if the touch is engaged, since there will always
   // be contact with the screen by definition.
   drawDot(ctx, touchX, touchY, pixelSize);
+  // populate pixel array;
+  fillPixel(mouseX, mouseY);
 
   // Prevent a scrolling action as a result of this touchmove triggering.
   // there is a bug; won't work; but not needed
