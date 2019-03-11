@@ -19,11 +19,11 @@ function clearPixel() {
   for (var i = 0; i < 28*28; i++) pixels[i] = 0;
 }
 
-function fillPixel(currentX, currentY) {
-    x = Math.floor(currentY * 0.1);     //0.2
-    y = Math.floor(currentX * 0.1) + 1;    // populate pixel array;
+function fillPixel(currentX, currentY, scale) {
+    x = Math.floor(currentY * scale);     //0.2
+    y = Math.floor(currentX * scale) + 1;    // populate pixel array;
     // this will be used for MNIST inference
-    //console.log("Pixel (x,y) = ", x, y);
+    console.log("Pixel (x,y) = ", x, y);
     for (var dy = 0; dy < 2; dy++){
       for (var dx = 0; dx < 2; dx++){
           if ((x + dx < 28) && (y + dy < 28)){
@@ -86,7 +86,8 @@ function onmouseMove(e) {
     //ctx.fillRect(mouseX, mouseY, pixelSize, pixelSize);
     drawDot(ctx, mouseX, mouseY, pixelSize)
     // populate pixel array;
-    fillPixel(mouseX, mouseY);
+    var scale = 0.1;
+    fillPixel(mouseX, mouseY, scale);
   } 
 }
 
@@ -108,7 +109,8 @@ function ontouchMove(e) {
   // be contact with the screen by definition.
   drawDot(ctx, touchX, touchY, pixelSize);
   // populate pixel array;
-  fillPixel(mouseX, mouseY);
+  var scale = 0.1;
+  fillPixel(touchX, touchY, scale);
 
   // Prevent a scrolling action as a result of this touchmove triggering.
   // there is a bug; won't work; but not needed
