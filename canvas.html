@@ -3,6 +3,8 @@
     <title>MNIST Canvas</title>
     <script src="/js/prj1mnist.js"></script>
     <script async src="/js/canvas_mousetouch.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <!--<script async src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.2"></script>-->
     <script async defer src="https://apis.google.com/js/api.js" 
         onload="this.onload=function(){};handleClientLoad()" 
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
@@ -32,7 +34,8 @@
         #digitpad {
             border: solid 2px #888;
             border-radius:4px;
-            position:relative; /* Necessary for correct mouse co-ords in Firefox */  
+            position:relative; /* Necessary for correct mouse co-ords in Firefox */
+            /*background-color: black;*/
         }
         .button {
             font-size: 14px;
@@ -41,7 +44,7 @@
         }
     </style>
 </head>
-<body onload="init()">
+<body onload="initCanvas(); initAPI(); ">
     <div id="digitpad-container">
         <h2 id="preauthorized_msg" class="security_msg" style="display: none;">Please Signin</h2>
         <div id="welcome">
@@ -56,7 +59,8 @@
         </div>
         <div class="buttons">
             <!--<input type="submit" value="Clear Sketchpad" id="clearbutton" onclick="clearCanvas();">-->
-            <button id="predict-button" class="button" onclick="clearCanvas()">To-Digit</button>
+            <button id="predict-button" class="button">To-Digit(cloud)</button>
+            <button id="predict-button-local" class="button">To-Digit</button>
             <button class="button" onclick="clearCanvas()">Clear</button>
             <a id="imageDownload" download="digit.png">
                 <button type="button" class="button" onClick="download()">Download</button>

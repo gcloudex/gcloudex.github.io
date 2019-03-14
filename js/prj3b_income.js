@@ -120,7 +120,7 @@ function updateSigninStatus(isSignedIn) {
     preauthorized_msg.style.display = 'block';
     predictButton.style.display = 'none';
     renderMsg(welcome_msg, null, "");
-    renderMsg(prediction_msg, null, "";
+    renderMsg(prediction_msg, null, "");
   }
 }
 

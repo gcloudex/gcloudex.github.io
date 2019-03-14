@@ -6,7 +6,7 @@
 // In your API Console project, add a JavaScript origin that corresponds
 //   to the domain where you will be running the script.
   //  development client ID
-//var clientId = '267601624832';
+//var clientId = '267601624832-';
   // production
 var clientId = '1030010108515-nuqmpkp1sf356pt0gdb4nhhdu2h4o4nr.apps.googleusercontent.com';
 
@@ -30,23 +30,35 @@ var scopes = 'profile https://www.googleapis.com/auth/cloud-platform';
 var discoveryDocs = ["https://people.googleapis.com/$discovery/rest?version=v1",
   "https://ml.googleapis.com/$discovery/rest?version=v1"];
 
+// Model for edge inference using tensorflowjs
+var model = null;
+
 // UI variables
 var preauthorized_msg, authorizeButton, welcome_msg, signoutButton;
 var predictButton, prediction_msg;
 
 var current_digit;
 
-function init() {
-  //console.log("init()...");
+// called from <body onload>; UI hook;
+function initAPI() {
+  console.log("initAPI()...");
   welcome_msg = document.getElementById("welcome_msg");
   preauthorized_msg = document.getElementById("preauthorized_msg");
   authorizeButton = document.getElementById("authorize-button");
   signoutButton = document.getElementById("signout-button");
   predictButton = document.getElementById("predict-button");
+  predictLocalButton = document.getElementById("predict-button-local");
   prediction_msg = document.getElementById("prediction_msg");
-  initCanvas();
+  initTF();
 }
 
+async function initTF() {
+  console.log("loading model...");
+  //model = await tf.loadModel('/js/models/mnist/model.json');
+  model = await tf.loadLayersModel('/js/models/mnist/model.json');
+}
+
+// called from <script src="https://apis.google.com/js/api.js">; API hook;
 function handleClientLoad() {
   // Load the API client and auth2 library
   gapi.load('client:auth2', initClient);
@@ -82,6 +94,35 @@ function handlePredictClick(event) {
     });
 }
 
+function handlePredictLocalClick(event) {
+  var imageData = ctx.getImageData(0, 0, 280, 280);  // white background
+  if (model) {
+    //const tfImg = tf.fromPixels(imageData, 1);
+    const tfImg = tf.browser.fromPixels(imageData, 1);
+    var smalImg = tf.image.resizeBilinear(tfImg, [28, 28]);
+    smalImg = tf.cast(smalImg, 'float32');
+    var tensor = smalImg.expandDims(0);
+    tensor = tensor.div(tf.scalar(255));
+    const prediction = model.predict(tensor);
+    const probabilities = prediction.dataSync();
+    var max_prob = Math.max(...probabilities);   //JS Spread syntax
+    var idx = "?";
+    if (max_prob > 0.6) {
+      idx = String(probabilities.indexOf(max_prob));
+      current_digit = probabilities.indexOf(max_prob);
+
+      // append to the number input
+      number_input = document.getElementById("number");
+      number_value = number_input.value;
+      number_value_str = String(number_value) + idx;
+      number_input.value = number_value_str;
+    }
+    //console.log("idx, prob = ", idx, max_prob);
+    msg =  "Your wrote: "+idx+" (probab.: "+(max_prob.toFixed(2)*100)+"%)";
+    renderMsg(prediction_msg, null, msg);
+  }
+}
+
 function initClient() {
   gapi.client.init({
       // Don't need API key in this particular case because of OAuth 2.0
@@ -97,6 +138,7 @@ function initClient() {
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
     predictButton.onclick = handlePredictClick;
+    predictLocalButton.onclick = handlePredictLocalClick;
   });
 }
 
