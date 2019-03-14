@@ -123,6 +123,45 @@ function handlePredictLocalClick(event) {
   }
 }
 
+function handlePredictLocalClickRev(event) {
+  const arr = new Uint8ClampedArray(3136);
+  var pi = 0;
+  // Iterate through every pixel
+  for (let i = 0; i < arr.length; i += 4) {
+    pi = i/4;
+    arr[i + 0] = pixels[pi];    // R value
+    arr[i + 1] = pixels[pi];  // G value
+    arr[i + 2] = pixels[pi];    // B value
+    arr[i + 3] = 1;  // A value
+  }
+  // Initialize a new ImageData object
+  let imageData = new ImageData(arr, 28);
+  const tfImg = tf.browser.fromPixels(imageData, 1);
+  var smalImg = tf.image.resizeBilinear(tfImg, [28, 28]);
+  smalImg = tf.cast(smalImg, 'float32');
+  var tensor = smalImg.expandDims(0);
+  if (model) {
+    const prediction = model.predict(tensor);
+    const probabilities = prediction.dataSync();
+    var max_prob = Math.max(...probabilities);   //JS Spread syntax
+    var idx = "?";
+    if (max_prob > 0.6) {
+      idx = String(probabilities.indexOf(max_prob));
+      current_digit = probabilities.indexOf(max_prob);
+
+      // append to the number input
+      number_input = document.getElementById("number");
+      number_value = number_input.value;
+      number_value_str = String(number_value) + idx;
+      number_input.value = number_value_str;
+    }
+    //console.log("idx, prob = ", idx, max_prob);
+    msg =  "Your wrote: "+idx+" (probab.: "+(max_prob.toFixed(2)*100)+"%)";
+    renderMsg(prediction_msg, null, msg);  
+  }    
+}
+
+
 function initClient() {
   gapi.client.init({
       // Don't need API key in this particular case because of OAuth 2.0
@@ -138,7 +177,7 @@ function initClient() {
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
     predictButton.onclick = handlePredictClick;
-    predictLocalButton.onclick = handlePredictLocalClick;
+    predictLocalButton.onclick = handlePredictLocalClickRev;
   });
 }
 
