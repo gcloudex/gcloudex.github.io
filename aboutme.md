@@ -5,7 +5,7 @@ subtitle: AI, Statistics, Machine Learning, ...
 ---
 
 Inspired by the *United Nations* **[AI for Good - Global Summit](https://www.itu.int/en/ITU-T/AI/Pages/default.aspx)**
-with the goals of finding and solving global problems using Artificial Intelligence. 
+with the goals of finding and solving global issues using Artificial Intelligence. 
 
 What else do you need?
 
